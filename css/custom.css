@@ -1,3 +1,21 @@
 .start-btn {
     font-size:50px;
 }
+
+#question-container {
+    padding:30px;
+    border:2px solid darkslategray;
+    margin-bottom:10px;
+}
+
+.answer-container {
+    padding:20px;
+    padding-left:30px;
+    border:2px solid darkslategray;
+    cursor: pointer;
+    margin-top:5px;
+}
+
+#game {
+    display:none;
+}
