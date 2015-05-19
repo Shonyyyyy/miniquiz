@@ -64,7 +64,7 @@ QuizUi = function() {
 
         for(var i = 0;i<this.answers.length;i++) {
             answersHtmlString += '<div class="row">' +
-                    '<div class="col-md-6 col-md-offset-3">' +
+                    '<div class="col-md-8 col-md-offset-2">' +
                     '<div class="answer-container">' +
                     this.answers[i] +
                     '</div>' +

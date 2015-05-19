@@ -1,21 +1,47 @@
+body {
+    background-image: url('./../bg.png');
+    background-repeat: no-repeat;
+    background-position: 100% 20%;
+    background-size: 100%;
+}
+
 .start-btn {
     font-size:50px;
 }
 
 #question-container {
     padding:30px;
-    border:2px solid darkslategray;
+    border:1px solid darkslategray;
     margin-bottom:10px;
+    border-radius:5px;
+
+    -webkit-box-shadow: 2px 3px 6px -4px rgba(0,0,0,0.75);
+    -moz-box-shadow: 2px 3px 6px -4px rgba(0,0,0,0.75);
+    box-shadow: 2px 3px 6px -4px rgba(0,0,0,0.75);
 }
 
 .answer-container {
     padding:20px;
     padding-left:30px;
-    border:2px solid darkslategray;
+    border:1px solid darkslategray;
+    border-radius:5px;
     cursor: pointer;
     margin-top:5px;
+
+    -webkit-box-shadow: 2px 3px 6px -4px rgba(0,0,0,0.75);
+    -moz-box-shadow: 2px 3px 6px -4px rgba(0,0,0,0.75);
+    box-shadow: 2px 3px 6px -4px rgba(0,0,0,0.75);
 }
 
 #game {
     display:none;
+    padding-top:25px;
+    padding-bottom:50px;
+    background-color:#fff;
+    border:1px solid darkslategray;
+    border-radius: 5px;
+    margin-bottom:50px;
+    margin-left:auto;
+    margin-right:auto;
+    width:60%;
 }
