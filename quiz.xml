@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Question id="1">
+    <QuestionText>Text der Frage</QuestionText>
+    <correct>Correct Answer</correct>
+    <answer>first wrong Answer</answer>
+    <answer>second wrong Answer</answer>
+</Question>
