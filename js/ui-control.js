@@ -1,9 +1,9 @@
 $(document).ready(function() {
     quizUi = new QuizUi();
-    quizUi.question = "Das ist die erste Frage";
+    quizUi.question = "Warum hat Janneck begonnen Angewandte Informatik zu studieren?";
     quizUi.questionNo = "1";
     quizUi.state = 1;
-    quizUi.answers = new Array("tolle Antwort", "zweite tolle Antwort", "koennte falsch sein");
+    quizUi.answers = new Array("weil er ein krasser geek ist", "weil er seine Ausbildung geil fand", "weil er seine Ausbildung nicht so geil fand");
 });
 
 /**
@@ -63,6 +63,7 @@ QuizUi = function() {
                 $('#start').fadeIn(500);
             });
             this.state = 1;
+            this.clearAnswerBar();
         } else {
             console.log("State is not correct for this action!");
         }
