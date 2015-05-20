@@ -6,6 +6,9 @@ $(document).ready(function() {
     quizUi.answers = new Array("tolle Antwort", "zweite tolle Antwort", "koennte falsch sein");
 });
 
+/**
+ * Clicklistener for all Buttons
+ */
 $(document).on('click', '#start-quiz', function (e) {
     quizUi.startQuiz();
 });
@@ -18,30 +21,42 @@ $(document).on('click', '#restart-quiz', function (e) {
     quizUi.resetQuiz();
 });
 
+/**
+ * General Class for the UI
+ * @constructor
+ */
 QuizUi = function() {
     var that = this;
 
-    var state;
-    var question;
-    var answers = new Array();
-    var questionNo;
+    var state; //States from 1 - 3
+    var question; //String for Question
+    var answers = new Array(); //Array for all answers
+    var questionNo; //Number of current Question
 
+    /**
+     * Starts the Quiz and is called from #start-quiz button
+     */
     this.startQuiz = function() {
         if(this.state == 1) {
+            //append Questions and Answers
             this.appendQuestion();
             this.appendAnswers();
 
+            //Display the Quiz and hide the start-screen
             $('#start').fadeOut(500, function(){
                 $('#game').fadeIn(500);
             });
 
+            //change the state
             this.state = 2;
         } else {
             console.log("State is not correct for this action!");
         }
 
     }
-
+    /**
+     * Displays the start screen. Can be called from Result screen only
+     */
     this.resetQuiz = function() {
         if(this.state == 3) {
             $('#result').fadeOut(500, function(){
@@ -53,6 +68,12 @@ QuizUi = function() {
         }
     }
 
+    /**
+     * Fades in the current Question and fades it back in again, after the new Questions
+     * and answers were set and appended to the dom
+     *
+     * NOTE: Before using this method, you should use setQuestion() and setAnswers()!
+     */
     this.switchQuestion = function() {
         if(this.state == 2) {
             $('#game').fadeOut(500, function() {
@@ -65,6 +86,13 @@ QuizUi = function() {
         }
     }
 
+    /**
+     * Fades out the Quiz and show the result-screen with 3 different screens
+     *
+     * @param mood: int 1 - 3 -> 1 = Success -> 2 = Ok -> 3 = Bad!
+     * @param correct: int amount of correct answers
+     * @param max: int amount of questions asked
+     */
     this.endQuiz = function(mood, correct, max) {
         if(this.state == 2) {
             $('#result-container').empty();
@@ -94,30 +122,56 @@ QuizUi = function() {
 
     }
 
+    /**
+     * clears the answer-bar
+     */
     this.clearAnswerBar = function() {
         $('.progress').empty();
     }
 
+    /**
+     * adds a green piece to the answer-bar
+     * @param width: int
+     */
     this.appendCorrectAnswer = function(width) {
         $('.progress').append('<div class="progress-bar progress-bar-success" style="width: ' + width + '%;"></div>');
     }
 
+    /**
+     * adds a red piece to the answer-bar
+     * @param width: int
+     */
     this.appendIncorrectAnswer = function(width) {
         $('.progress').append('<div class="progress-bar progress-bar-danger" style="width: ' + width + '%;"></div>');
     }
 
+    /**
+     * sets the Question to the class-field so it can be used by switchQuestion()
+     * @param input: String
+     */
     this.setQuestion = function(input) {
         this.question = input;
     }
 
+    /**
+     * sets the answers to the class-field so it can be used by switchQuestion()
+     * @param input: String[]
+     */
     this.setAnswers = function(arrayInput) {
         this.answers = arrayIinput;
     }
 
+    /**
+     * sets the answers to the class-field so it can be used by switchQuestion()
+     * @param questionNo: String
+     */
     this.setQuestionNo = function(questionNo) {
         this.questionNo = questionNo;
     }
 
+    /**
+     * appends the Question to the dom and is used by switchQuestion and window.onload
+     */
     this.appendQuestion = function() {
         $('#question-no').empty();
         $('#question-no').append(this.questionNo);
@@ -126,6 +180,9 @@ QuizUi = function() {
         $('#question-container').append(this.question);
     }
 
+    /**
+     * appends all answers from the array to the dom and is used by switchQuestion and window.onload
+     */
     this.appendAnswers = function() {
         var answersHtmlString = "";
         $('#answers').empty();
