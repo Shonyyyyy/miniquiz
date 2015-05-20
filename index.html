@@ -5,30 +5,32 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/ui-control.js"></script>
-    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/superhero.min.css">
     <link rel="stylesheet" href="css/custom.css">
     <title>Miniquiz</title>
 </head>
 <body>
 <div class="container">
     <h1>Miniquiz - Studier die Welt</h1>
-    <hr>
-    <div id="start">
+    <div class="jumbotron" id="start">
         <p class="text-center">
-            <button id="start-quiz" class="btn btn-success start-btn">
-                Quiz starten<span class="glyphicon glyphicon-question-sign"></span>
+            <button id="start-quiz" class="btn btn-primary start-btn">
+                Quiz starten<span class="glyphicon glyphicon-question-sign glyph-right"></span>
             </button>
         </p>
     </div>
-    <div id="game">
+    <div class="jumbotron" id="game">
         <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <h2>Frage <span id="question-no">1</span></h2>
-                <div id="question-container">
-                </div>
+            <h2><span class="glyphicon glyphicon-question-sign glyph-left"></span>Frage <span id="question-no">1</span></h2>
+            <p id="question-container">
+            </p>
+            <div id="answers">
             </div>
         </div>
-        <div id="answers">
+        <div class="row">
+            <hr>
+            <div class="progress">
+            </div>
         </div>
     </div>
 </div>

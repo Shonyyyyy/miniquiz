@@ -38,6 +38,18 @@ QuizUi = function() {
         });
     }
 
+    this.clearAnswerBar = function() {
+        $('.progress').empty();
+    }
+
+    this.appendCorrectAnswer = function(width) {
+        $('.progress').append('<div class="progress-bar progress-bar-success" style="width: ' + width + '%;"></div>');
+    }
+
+    this.appendIncorrectAnswer = function(width) {
+        $('.progress').append('<div class="progress-bar progress-bar-danger" style="width: ' + width + '%;"></div>');
+    }
+
     this.setQuestion = function(input) {
         this.question = input;
     }
@@ -63,20 +75,13 @@ QuizUi = function() {
         $('#answers').empty();
 
         for(var i = 0;i<this.answers.length;i++) {
-            answersHtmlString += '<div class="row">' +
-                    '<div class="col-md-8 col-md-offset-2">' +
-                    '<div class="answer-container">' +
-                    this.answers[i] +
-                    '</div>' +
-                    '</div>' +
-                    '</div>';
+            answersHtmlString += '<div class="btn btn-block btn-primary answer-container">' + this.answers[i] + '</div>';
         }
 
         $('#answers').append(answersHtmlString);
 
         $('.answer-container').click(function(){
-            that.appendQuestion();
-            that.appendAnswers();
+            this.switchQuestion();
         });
 
     }

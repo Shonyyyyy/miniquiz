@@ -3,45 +3,38 @@ body {
     background-repeat: no-repeat;
     background-position: 100% 20%;
     background-size: 100%;
+    color:black;
 }
 
 .start-btn {
     font-size:50px;
 }
 
-#question-container {
-    padding:30px;
-    border:1px solid darkslategray;
-    margin-bottom:10px;
-    border-radius:5px;
-
-    -webkit-box-shadow: 2px 3px 6px -4px rgba(0,0,0,0.75);
-    -moz-box-shadow: 2px 3px 6px -4px rgba(0,0,0,0.75);
-    box-shadow: 2px 3px 6px -4px rgba(0,0,0,0.75);
-}
-
-.answer-container {
-    padding:20px;
-    padding-left:30px;
-    border:1px solid darkslategray;
-    border-radius:5px;
-    cursor: pointer;
-    margin-top:5px;
-
-    -webkit-box-shadow: 2px 3px 6px -4px rgba(0,0,0,0.75);
-    -moz-box-shadow: 2px 3px 6px -4px rgba(0,0,0,0.75);
-    box-shadow: 2px 3px 6px -4px rgba(0,0,0,0.75);
+.jumbotron {
+    background-color:#0184af; !important;
+    color:#fff;
 }
 
 #game {
     display:none;
-    padding-top:25px;
-    padding-bottom:50px;
-    background-color:#fff;
-    border:1px solid darkslategray;
-    border-radius: 5px;
-    margin-bottom:50px;
-    margin-left:auto;
-    margin-right:auto;
-    width:60%;
+}
+
+ul li{
+    cursor:pointer;
+}
+
+.btn-primary {
+    background-color:#ff8c00; !important;
+}
+
+.btn-primary:hover {
+    background-color:#e78002; !important;
+}
+
+.glyph-right {
+    margin-left:10px;
+}
+
+.glyph-left {
+    margin-right:10px;
 }
