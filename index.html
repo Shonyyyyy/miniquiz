@@ -10,27 +10,37 @@
     <title>Miniquiz</title>
 </head>
 <body>
-<div class="container">
-    <h1>Miniquiz - Studier die Welt</h1>
-    <div class="jumbotron" id="start">
-        <p class="text-center">
-            <button id="start-quiz" class="btn btn-primary start-btn">
-                Quiz starten<span class="glyphicon glyphicon-question-sign glyph-right"></span>
-            </button>
-        </p>
-    </div>
-    <div class="jumbotron" id="game">
-        <div class="row">
-            <h2><span class="glyphicon glyphicon-question-sign glyph-left"></span>Frage <span id="question-no">1</span></h2>
-            <p id="question-container">
+<div id="overlayer">
+    <div class="container">
+        <h1><b>Miniquiz - Studier die Welt</b></h1>
+        <div class="jumbotron" id="start">
+            <p class="text-center">
+                <button id="start-quiz" class="btn btn-primary start-btn">
+                    Quiz starten<span class="glyphicon glyphicon-question-sign glyph-right"></span>
+                </button>
             </p>
-            <div id="answers">
+        </div>
+        <div class="jumbotron" id="game">
+            <div class="row">
+                <h2><span class="glyphicon glyphicon-question-sign glyph-left"></span>Frage <span id="question-no">1</span></h2>
+                <p id="question-container">
+                </p>
+                <div id="answers">
+                </div>
+            </div>
+            <div class="row">
+                <hr>
+                Fortschritt:
+                <div class="progress">
+                </div>
             </div>
         </div>
-        <div class="row">
-            <hr>
-            <div class="progress">
+        <div class="jumbotron clearfix" id="result">
+            <h2>Dein Ergebnis:</h2>
+            <div id="result-container">
             </div>
+            <hr>
+            <button id="restart-quiz" class="btn btn-primary btn-lg pull-right">Nochmal!</button>
         </div>
     </div>
 </div>
