@@ -6,46 +6,75 @@
  * @constructor
  */
 Quiz = function() {
-    var questions; //Questionobjects only!
-    var maxRound = 6;
-    var currentRound = 0;
-    var correctAnswers; //Questionobjects only!
+    this.questions; //Questionobjects only!
+    this.maxRound = 3;
+    this.currentRound = 0;
+    this.correctAnswers = new Array(); //Questionobjects only!
 	var that = this;
-	var askedQuestion = new Array(); 
-    this.addCorrectAnswer = function() {
+	this.askedQuestion = new Array();
 
-	
+	this.addCorrectAnswer = function() {
+
     }
+
     this.getQuestion= function(){
-	    x = Math.floor((Math.random() * this.questions.length));
-		for(var i = 0; i< askedQuestion.length; i++ )
+	    var x = Math.floor((Math.random() * this.questions.length));
+		for(var i = 0; i< this.askedQuestion.length; i++ )
 		{
-			if(x == askedQuestion[i])
+			if(x == this.askedQuestion[i])
 			{
 				return this.getQuestion();
 			}
 		}
+		this.askedQuestion.push(x);
 		return x;// questions[x];
     }
    
    	this.switchQuestion = function(){
-	   	
-   	} 
+	   	this.currentRound++;
+		if(this.currentRound > this.maxRound) {
+			this.endQuiz();
+		} else {
+			this.prepareNextQuestionForUi(this.getQuestion());
+			quizUi.switchQuestion();
+		}
+   	}
+
+	this.endQuiz = function() {
+		//calculate results
+		quizUi.endQuiz(1, this.correctAnswers.length, this.maxRound);
+		this.resetQuiz();
+	}
+
+	this.resetQuiz = function() {
+		this.correctAnswers = new Array();
+		this.currentRound = 0;
+		this.askedQuestion = new Array();
+	}
+
     this.startQuiz = function(){
 	  	try{
 		  	var x = this.getQuestion();
-		    askedQuestion.push(x);
+		    //askedQuestion.push(x);
 	    }
 	    catch(e){
-		    console.log("UPS");
+		    console.log("All Questions have been delivered");
 	    }
-		quizUi.setQuestion(this.questions[x].text);
-		quizUi.setAnswers(this.questions[x].answers); 
 		quizUi.state = 1;
-		quizUi.setQuestionNo(1);
+		this.currentRound = 1;
+
+		this.prepareNextQuestionForUi(x);
+
 		quizUi.startQuiz();
 	    
     }
+
+	this.prepareNextQuestionForUi = function(index) {
+		quizUi.setQuestion(this.questions[index].text);
+		quizUi.setAnswers(this.questions[index].answers);
+		quizUi.setQuestionNo(this.currentRound);
+	}
+
     this.init = function(){
 		this.readXml();
 	}
@@ -59,14 +88,14 @@ Quiz = function() {
            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
        }
        xmlhttp.onreadystatechange = function(){
-           if(xmlhttp.readyState == 4)
+           if(xmlhttp.readyState == 4 && xmlhttp.status==200)
            {
             	xmlText = xmlhttp.responseText;    //here we get all lines from text file*
 				that.parse(xmlText);
            }
        }
        
-       xmlhttp.open("GET", "quiz.xml", true);
+       xmlhttp.open("GET", "./../quiz.xml", true);
        xmlhttp.send();
 	}
 	this.parse = function(xmlText){

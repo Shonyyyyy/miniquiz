@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Quiz>
 <Question id="1">
-    <QuestionText>Text der Frage</QuestionText>
+    <QuestionText>Text der Frage 1</QuestionText>
     <correct>Correct Answer</correct>
     <answer>first wrong Answer</answer>
     <answer>second wrong Answer</answer>
 </Question>
 <Question id="2">
-    <QuestionText>Text der Frage</QuestionText>
+    <QuestionText>Text der Frage 2</QuestionText>
     <correct>Correct Answer</correct>
     <answer>first wrong Answer</answer>
     <answer>second wrong Answer</answer>
 </Question>
 <Question id="3">
-    <QuestionText>Text der Frage</QuestionText>
+    <QuestionText>Text der Frage 3</QuestionText>
     <correct>Correct Answer</correct>
     <answer>first wrong Answer</answer>
     <answer>second wrong Answer</answer>

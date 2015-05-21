@@ -3,7 +3,7 @@
  */
 
 $(document).on('click', '.answer-container', function (e) {
-    quizUi.switchQuestion();
+    quiz.switchQuestion();
 });
 
 $(document).on('click', '#restart-quiz', function (e) {
@@ -15,12 +15,12 @@ $(document).on('click', '#restart-quiz', function (e) {
  * @constructor
  */
 QuizUi = function() {
-    var that = this;
+    that = this;
 
-    var state; //States from 1 - 3
-    var question; //String for Question
-    var answers = new Array(); //Array for all answers
-    var questionNo; //Number of current Question
+    this.state; //States from 1 - 3
+    this.question; //String for Question
+    this.answers = new Array(); //Array for all answers
+    this.questionNo; //Number of current Question
 
     /**
      * Starts the Quiz and is called from #start-quiz button
@@ -182,10 +182,5 @@ QuizUi = function() {
         }
 
         $('#answers').append(answersHtmlString);
-
-        $('.answer-container').click(function(){
-            that.switchQuestion();
-        });
-
     }
 }
