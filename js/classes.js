@@ -16,7 +16,10 @@ Quiz = function() {
 	this.addCorrectAnswer = function() {
 
     }
-
+	
+	/**
+	*return a random Question which is not used in the Quiz before	
+	*/
     this.getQuestion= function(){
 	    var x = Math.floor((Math.random() * this.questions.length));
 		for(var i = 0; i< this.askedQuestion.length; i++ )
@@ -29,7 +32,10 @@ Quiz = function() {
 		this.askedQuestion.push(x);
 		return x;// questions[x];
     }
-   
+	
+	/**
+	/*
+	*/
    	this.switchQuestion = function(){
 	   	this.currentRound++;
 		if(this.currentRound > this.maxRound) {
@@ -79,56 +85,31 @@ Quiz = function() {
 		this.readXml();
 	}
 	this.readXml = function(){
-       
-       var xmlhttp;
-       if(window.XMLHttpRequest){
-           xmlhttp = new XMLHttpRequest();
-       }
-       else{
-           xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-       }
-       xmlhttp.onreadystatechange = function(){
-           if(xmlhttp.readyState == 4 && xmlhttp.status==200)
-           {
-            	xmlText = xmlhttp.responseText;    //here we get all lines from text file*
-				that.parse(xmlText);
-           }
-       }
-       
-       xmlhttp.open("GET", "./../quiz.xml", true);
-       xmlhttp.send();
+       jQuery.get("quiz.xml", function(data){
+	      var xml = $.parseXML(data);
+	      that.parse(xml);
+       });
 	}
 	this.parse = function(xmlText){
-		if (window.DOMParser)
-		{
-			parser=new DOMParser();
-			xmlDoc=parser.parseFromString(xmlText,"text/xml");
-		}
-		else // Internet Explorer
-		{
-			xmlDoc=new ActiveXObject("Microsoft.XMLDOM");
-			xmlDoc.async=false;
-			xmlDoc.loadXML(txt); 
-		}
 		var answerArray = new Array();
 		var question = new Array();
-		for(var c = 0; c < xmlDoc.getElementsByTagName("Question").length;c++){
+		for(var c = 0; c < xmlText.getElementsByTagName("Question").length;c++){
 			
 			question[c] = new Question();
 			question[c].answers = new Array();
-			question[c].text = xmlDoc.getElementsByTagName("Question")[c].childNodes[1].childNodes[0].nodeValue;
-			question[c].id = xmlDoc.getElementsByTagName("Question")[c].getAttribute("id");
+			question[c].text = xmlText.getElementsByTagName("Question")[c].childNodes[1].childNodes[0].nodeValue;
+			question[c].id = xmlText.getElementsByTagName("Question")[c].getAttribute("id");
 			answer = new Answer();
-			answer.text=xmlDoc.getElementsByTagName("Question")[c].childNodes[3].childNodes[0].nodeValue;
+			answer.text=xmlText.getElementsByTagName("Question")[c].childNodes[3].childNodes[0].nodeValue;
 			answer.qId = question[c].id;
 			answer.correct = true;
 			
 			question[c].answers.push(answer);
 			ci = 5;
 			
-			for(i=0;i<xmlDoc.getElementsByTagName("Question")[c].childElementCount-2;i++){
+			for(i=0;i<xmlText.getElementsByTagName("Question")[c].childElementCount-2;i++){
 				answer = new Answer();
-				answer.text=xmlDoc.getElementsByTagName("Question")[c].childNodes[ci].childNodes[0].nodeValue;
+				answer.text=xmlText.getElementsByTagName("Question")[c].childNodes[ci].childNodes[0].nodeValue;
 				answer.qId = question[c].id;
 				answer.correct = false;
 				question[c].answers.push(answer);
