@@ -34,7 +34,8 @@ Quiz = function() {
     }
 	
 	/**
-	/*
+	* Switch a Question in the Gui. Looks how many Questions are aked and
+	* stop the Quiz if the maxQuetion count reached. 
 	*/
    	this.switchQuestion = function(){
 	   	this.currentRound++;
@@ -45,7 +46,9 @@ Quiz = function() {
 			quizUi.switchQuestion();
 		}
    	}
-
+   	/**
+	* Finished the Quiz and reset the it.   	
+	*/
 	this.endQuiz = function() {
 		//calculate results
 		quizUi.endQuiz(1, this.correctAnswers.length, this.maxRound);
@@ -80,45 +83,101 @@ Quiz = function() {
 		quizUi.setAnswers(this.questions[index].answers);
 		quizUi.setQuestionNo(this.currentRound);
 	}
-
+	
+	/*
+	*start the XML Parser and Read the XML-File	
+	*/
     this.init = function(){
-		this.readXml();
+		this.readFile();
 	}
-	this.readXml = function(){
-       jQuery.get("quiz.xml", function(data){
-	      var xml = $.parseXML(data);
-	      that.parse(xml);
-       });
+	
+	/*
+	* Read the XML-File and send it to parserXML()	
+	*/
+	this.readFile = function(){
+		
+		jQuery.get("quiz.xml",function(data){
+			that.parseXML(data);
+		});
 	}
-	this.parse = function(xmlText){
+	
+	/*
+	* Parse the XML-Code in Questions. Put the Questions in the Quiz Objekt.
+	*/
+	this.parseXML = function(s){
+		//Replace the String for split the String after this
+		var xml = s.replace(/ /gi, "#+#");
+		xml = xml.replace(/\n/gi, "#+#");
+		xml = xml.replace(/</gi,"#+#");
+		xml = xml.replace(/>/gi,"#+#");
+		xml = xml.split("#+#");
+		
+		//Count the Questions in the XML-String
+		var countQuestions = new Array();
+		for(var i = 0; i<xml.length;i++) {
+			//Pushed the position from the Start of the Question in this Array
+			if(xml[i] == "Question"){
+				countQuestions.push(i);
+			}
+			//Pushed the position from the End of the Question in the Array
+			if(xml[i] == "/Question"){
+				countQuestions.push(i);
+			}
+		}
+		
+		//Create new Arrays, to safe the elements
 		var answerArray = new Array();
 		var question = new Array();
-		for(var c = 0; c < xmlText.getElementsByTagName("Question").length;c++){
-			
-			question[c] = new Question();
-			question[c].answers = new Array();
-			question[c].text = xmlText.getElementsByTagName("Question")[c].childNodes[1].childNodes[0].nodeValue;
-			question[c].id = xmlText.getElementsByTagName("Question")[c].getAttribute("id");
-			answer = new Answer();
-			answer.text=xmlText.getElementsByTagName("Question")[c].childNodes[3].childNodes[0].nodeValue;
-			answer.qId = question[c].id;
-			answer.correct = true;
-			
-			question[c].answers.push(answer);
-			ci = 5;
-			
-			for(i=0;i<xmlText.getElementsByTagName("Question")[c].childElementCount-2;i++){
-				answer = new Answer();
-				answer.text=xmlText.getElementsByTagName("Question")[c].childNodes[ci].childNodes[0].nodeValue;
-				answer.qId = question[c].id;
-				answer.correct = false;
-				question[c].answers.push(answer);
-				ci = ci+2;
-			}
-			
-		}
-		this.questions = question;
 		
+		//Seach in each Qustions Element in the XML-File for the Text, Correctanwser und Answer
+		for(var i = 0;i<countQuestions.length/2;i++){
+			//Create an new Qustion Object and fill it
+			question[i] = new Question();
+			question[i].answers = new Array();
+			question[i].id = i;
+			
+			//Search in the Quetion for the Elemente
+			for(var j = countQuestions[i*2]; j<(countQuestions[(i*2)+1]);j++)
+			{
+				if(xml[j] == "QuestionText"){
+					var text = "";
+					j++;
+					while(xml[j] != "/QuestionText"){
+						text += xml[j]+" ";
+						j++; 
+					}
+					question[i].text = text;
+					
+				}
+				if(xml[j] == "correct"){
+					var text = "";
+					j++;
+					while(xml[j] != "/correct"){
+						text += xml[j]+" ";
+						j++; 
+					}
+					answer = new Answer();
+					answer.text = text;
+					answer.qId = i;
+					answer.correct = true;
+					question[i].answers.push(answer);
+				}
+				if(xml[j] == "answer"){
+					var text = "";
+					j++;
+					while(xml[j] != "/answer"){
+						text += xml[j]+" ";
+						j++; 
+					}
+					answer = new Answer();
+					answer.text = text;
+					answer.qId = i;
+					answer.correct = false;
+					question[i].answers.push(answer);
+				}
+			}	
+			this.questions = question;	
+		}		
 	}
 }
 
