@@ -1,9 +1,6 @@
 /**
  * Clicklistener for all Buttons
  */
-$(document).on('click', '#start-quiz', function (e) {
-    quizUi.startQuiz();
-});
 
 $(document).on('click', '.answer-container', function (e) {
     quizUi.switchQuestion();
@@ -151,7 +148,7 @@ QuizUi = function() {
      * @param input: String[]
      */
     this.setAnswers = function(arrayInput) {
-        this.answers = arrayIinput;
+        this.answers = arrayInput;
     }
 
     /**
@@ -181,7 +178,7 @@ QuizUi = function() {
         $('#answers').empty();
 
         for(var i = 0;i<this.answers.length;i++) {
-            answersHtmlString += '<div class="btn btn-block btn-primary answer-container">' + this.answers[i] + '</div>';
+            answersHtmlString += '<div class="btn btn-block btn-primary answer-container">' + this.answers[i].text + '</div>';
         }
 
         $('#answers').append(answersHtmlString);

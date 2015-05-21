@@ -1,3 +1,4 @@
+
 $(document).ready(function() {
     quizUi = new QuizUi();
     quiz = new Quiz();
@@ -8,4 +9,9 @@ $(document).ready(function() {
     quizUi.questionNo= "1";
     quizUi.state = 1;
     quizUi.answers = new Array("weil er ein krasser geek ist", "weil er seine Ausbildung geil fand", "weil er seine Ausbildung nicht so geil fand");*/
+});
+
+$(document).on('click', '#start-quiz', function (e) {
+    quiz.startQuiz();
+    console.log("");
 });

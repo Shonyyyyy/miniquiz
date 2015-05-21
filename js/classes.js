@@ -11,9 +11,40 @@ Quiz = function() {
     var currentRound = 0;
     var correctAnswers; //Questionobjects only!
 	var that = this;
+	var askedQuestion = new Array(); 
     this.addCorrectAnswer = function() {
 
 	
+    }
+    this.getQuestion= function(){
+	    x = Math.floor((Math.random() * this.questions.length));
+		for(var i = 0; i< askedQuestion.length; i++ )
+		{
+			if(x == askedQuestion[i])
+			{
+				return this.getQuestion();
+			}
+		}
+		return x;// questions[x];
+    }
+   
+   	this.switchQuestion = function(){
+	   	
+   	} 
+    this.startQuiz = function(){
+	  	try{
+		  	var x = this.getQuestion();
+		    askedQuestion.push(x);
+	    }
+	    catch(e){
+		    console.log("UPS");
+	    }
+		quizUi.setQuestion(this.questions[x].text);
+		quizUi.setAnswers(this.questions[x].answers); 
+		quizUi.state = 1;
+		quizUi.setQuestionNo(1);
+		quizUi.startQuiz();
+	    
     }
     this.init = function(){
 		this.readXml();
@@ -35,7 +66,7 @@ Quiz = function() {
            }
        }
        
-       xmlhttp.open("GET", "../Documents/Studium/miniquiz/quiz.xml", true);
+       xmlhttp.open("GET", "quiz.xml", true);
        xmlhttp.send();
 	}
 	this.parse = function(xmlText){

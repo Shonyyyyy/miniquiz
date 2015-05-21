@@ -23,7 +23,7 @@ body {
 }
 
 .jumbotron {
-    background-color:#0184af; !important;
+    background-color:#0184af !important;
     color:#fff;
 }
 
@@ -36,11 +36,11 @@ ul li{
 }
 
 .btn-primary {
-    background-color:#ff8c00; !important;
+    background-color:#ff8c00 !important;
 }
 
 .btn-primary:hover {
-    background-color:#e78002; !important;
+    background-color:#e78002 !important;
 }
 
 .glyph-right {
@@ -56,5 +56,5 @@ ul li{
 }
 
 .container {
-    margin-top:100px; !important;
+    margin-top:100px !important;
 }
