@@ -11,9 +11,67 @@
     <correct>Correct Answer</correct>
     <answer>first wrong Answer</answer>
     <answer>second wrong Answer</answer>
+    <answer>third wrong Answer</answer>
+    <answer>fourth wrong Answer</answer>
+    <answer>fifth wrong Answer</answer>
+    <answer>sixth wrong Answer</answer>
 </Question>
 <Question id="3">
     <QuestionText>Text der Frage 3</QuestionText>
+	<answer>first wrong Answer</answer>
+    <correct>Correct Answer</correct>
+    <answer>second wrong Answer</answer>
+</Question>
+<Question id="4">
+    <QuestionText>Text der Frage 4</QuestionText>
+    <correct>Correct Answer</correct>
+    <answer>first wrong Answer</answer>
+    <answer>second wrong Answer</answer>
+</Question>
+<Question id="5">
+    <QuestionText>Text der Frage 5</QuestionText>
+    <correct>Correct Answer</correct>
+    <answer>first wrong Answer</answer>
+    <answer>second wrong Answer</answer>
+</Question>
+<Question id="6">
+    <QuestionText>Text der Frage 6</QuestionText>
+    <correct>Correct Answer</correct>
+    <answer>first wrong Answer</answer>
+    <answer>second wrong Answer</answer>
+</Question>
+<Question id="7">
+    <QuestionText>Text der Frage 7</QuestionText>
+    <correct>Correct Answer</correct>
+    <answer>first wrong Answer</answer>
+    <answer>second wrong Answer</answer>
+</Question>
+<Question id="8">
+    <QuestionText>Text der Frage 8</QuestionText>
+    <correct>Correct Answer</correct>
+    <answer>first wrong Answer</answer>
+    <answer>second wrong Answer</answer>
+</Question>
+<Question id="9">
+    <QuestionText>Text der Frage 9</QuestionText>
+    <correct>Correct Answer</correct>
+    <answer>first wrong Answer</answer>
+    <answer>second wrong Answer</answer>
+</Question>
+<Question id="10">
+    <QuestionText>Text der Frage 10</QuestionText>
+    <correct>Correct Answer</correct>
+    <answer>first wrong Answer</answer>
+    <answer>second wrong Answer</answer>
+</Question>
+<Question id="11">
+    <QuestionText>Text der Frage 11</QuestionText>
+    <correct>Correct Answer</correct>
+    <answer>first wrong Answer</answer>
+    <answer>second wrong Answer</answer>
+</Question>
+<Question id="12">
+    <QuestionText>Text der Frage 12</QuestionText>
     <correct>Correct Answer</correct>
     <answer>first wrong Answer</answer>
     <answer>second wrong Answer</answer>

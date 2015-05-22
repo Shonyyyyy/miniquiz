@@ -3,6 +3,12 @@
  */
 
 $(document).on('click', '.answer-container', function (e) {
+	if($(e.toElement).hasClass("thisElement")){
+		quiz.addCorrectAnswer();
+		quizUi.appendCorrectAnswer();
+	} else{
+		quizUi.appendIncorrectAnswer();
+	}
     quiz.switchQuestion();
 });
 
@@ -16,12 +22,15 @@ $(document).on('click', '#restart-quiz', function (e) {
  */
 QuizUi = function() {
     that = this;
-
+	this.widthAnswerElement;
     this.state; //States from 1 - 3
     this.question; //String for Question
     this.answers = new Array(); //Array for all answers
     this.questionNo; //Number of current Question
 
+	this.setWidthAnswerElement = function(width){
+		this.widthAnswerElement = width;
+	}
     /**
      * Starts the Quiz and is called from #start-quiz button
      */
@@ -123,8 +132,8 @@ QuizUi = function() {
      * adds a green piece to the answer-bar
      * @param width: int
      */
-    this.appendCorrectAnswer = function(width) {
-        $('.progress').append('<div class="progress-bar progress-bar-success" style="width: ' + width + '%;"></div>');
+    this.appendCorrectAnswer = function() {
+        $('.progress').append('<div class="progress-bar progress-bar-success" style="width: ' + this.widthAnswerElement + '%;"></div>');
     }
 
     /**
@@ -132,7 +141,7 @@ QuizUi = function() {
      * @param width: int
      */
     this.appendIncorrectAnswer = function(width) {
-        $('.progress').append('<div class="progress-bar progress-bar-danger" style="width: ' + width + '%;"></div>');
+        $('.progress').append('<div class="progress-bar progress-bar-danger" style="width: ' + this.widthAnswerElement + '%;"></div>');
     }
 
     /**
@@ -176,11 +185,31 @@ QuizUi = function() {
     this.appendAnswers = function() {
         var answersHtmlString = "";
         $('#answers').empty();
-
+		var usedId = new Array();
         for(var i = 0;i<this.answers.length;i++) {
-            answersHtmlString += '<div class="btn btn-block btn-primary answer-container">' + this.answers[i].text + '</div>';
+	        usedId = this.getRandomAnswerNumber(usedId,this.answers.length);
+	        if(this.answers[usedId[usedId.length-1]].correct){
+		       answersHtmlString += '<div class="btn btn-block btn-primary answer-container thisElement">' + this.answers[usedId[usedId.length-1]].text + '</div>';
+	       	}
+		   	else {
+		   		answersHtmlString += '<div class="btn btn-block btn-primary answer-container">' + this.answers[usedId[usedId.length-1]].text + '</div>';
+		   	}            
         }
 
         $('#answers').append(answersHtmlString);
+    }
+    
+    this.getRandomAnswerNumber = function(usedId,arrayLength){
+	    var x = Math.floor((Math.random() * arrayLength));
+	    console.log("x: "+x);
+		for(var i = 0; i< usedId.length; i++ )
+		{
+			if(x == usedId[i])
+			{
+				return this.getRandomAnswerNumber(usedId,arrayLength);
+			}
+		}
+		usedId.push(x);
+		return usedId;
     }
 }

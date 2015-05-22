@@ -14,9 +14,17 @@ Quiz = function() {
 	this.askedQuestion = new Array();
 
 	this.addCorrectAnswer = function() {
-
+		this.correctAnswers.push(this.questions[this.askedQuestion[this.askedQuestion.length-1]]);
     }
 	
+	
+	this.setMaxRound = function(maxRound){
+		this.maxRound = maxRound;
+		quizUi.setWidthAnswerElement(100/this.maxRound);
+	}
+	this.getMaxRound = function(){
+		return this.maxRound;
+	}
 	/**
 	*return a random Question which is not used in the Quiz before	
 	*/
@@ -32,7 +40,6 @@ Quiz = function() {
 		this.askedQuestion.push(x);
 		return x;// questions[x];
     }
-	
 	/**
 	* Switch a Question in the Gui. Looks how many Questions are aked and
 	* stop the Quiz if the maxQuetion count reached. 
@@ -51,7 +58,14 @@ Quiz = function() {
 	*/
 	this.endQuiz = function() {
 		//calculate results
-		quizUi.endQuiz(1, this.correctAnswers.length, this.maxRound);
+		var mood = Math.round((100  /this.maxRound * this.correctAnswers.length)*100)/100;
+		if(mood>66.67)
+			mood = 1;
+		else if(mood > 33.33)
+			mood = 2;
+		else
+			mood = 3;
+		quizUi.endQuiz(mood, this.correctAnswers.length, this.maxRound);
 		this.resetQuiz();
 	}
 
@@ -88,6 +102,7 @@ Quiz = function() {
 	*start the XML Parser and Read the XML-File	
 	*/
     this.init = function(){
+	    quizUi.setWidthAnswerElement(100/this.maxRound);
 		this.readFile();
 	}
 	
