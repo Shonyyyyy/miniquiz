@@ -201,7 +201,6 @@ QuizUi = function() {
     
     this.getRandomAnswerNumber = function(usedId,arrayLength){
 	    var x = Math.floor((Math.random() * arrayLength));
-	    console.log("x: "+x);
 		for(var i = 0; i< usedId.length; i++ )
 		{
 			if(x == usedId[i])

@@ -221,6 +221,9 @@ Answer = function() {
     
 }
 
+function machWas(event){
+	return event.keyCode + 12;
+}
 
 
 

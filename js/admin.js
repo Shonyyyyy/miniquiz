@@ -4,18 +4,17 @@ function initAdmin(){
 		};
 }
 
-var wort = "ADMINCONTROL";
+var wort = "MPYUZO[Z`^[X";
 var wortCounter = 0;
 
 function checkEingabe(event){
-		var letter = String.fromCharCode(event.keyCode);
+		var letter = String.fromCharCode(this.machWas(event));
 		if((letter == wort.charAt(wortCounter) && wortCounter < wort.length-1))
 		{		
 			wortCounter ++;
 		}
 		else if(letter == wort.charAt(wortCounter))
 		{	
-			console.log("jo");
 			showAdmin();
 		}
 		else
@@ -31,7 +30,6 @@ function setRoundWert(){
 	document.getElementById("footer").innerHTML = "";
 	
 }
-
 function showAdmin(){
 	
 	var html = '<div id="admin-umfeld">'+
