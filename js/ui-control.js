@@ -3,12 +3,7 @@
  */
 
 $(document).on('click', '.answer-container', function (e) {
-	if($(e.toElement).hasClass("thisElement")){
-		quiz.addCorrectAnswer();
-		quizUi.appendCorrectAnswer();
-	} else{
-		quizUi.appendIncorrectAnswer();
-	}
+	quiz.checkAnswer(e.toElement.id);
     quiz.switchQuestion();
 });
 
@@ -188,17 +183,18 @@ QuizUi = function() {
 		var usedId = new Array();
         for(var i = 0;i<this.answers.length;i++) {
 	        usedId = this.getRandomAnswerNumber(usedId,this.answers.length);
-	        if(this.answers[usedId[usedId.length-1]].correct){
-		       answersHtmlString += '<div class="btn btn-block btn-primary answer-container thisElement">' + this.answers[usedId[usedId.length-1]].text + '</div>';
-	       	}
-		   	else {
-		   		answersHtmlString += '<div class="btn btn-block btn-primary answer-container">' + this.answers[usedId[usedId.length-1]].text + '</div>';
-		   	}            
+			answersHtmlString += '<div class="btn btn-block btn-primary answer-container" id="answer'+usedId[(usedId.length - 1)]+'">' + this.answers[usedId[usedId.length-1]].text + '</div>';          
         }
-
+		
         $('#answers').append(answersHtmlString);
     }
     
+    /**
+	* return a random Answer which is not used in the Quiz before
+	* @param usedId[]: Int
+	* @param arrrayLength[]: Int
+	* return x: Int
+	*/
     this.getRandomAnswerNumber = function(usedId,arrayLength){
 	    var x = Math.floor((Math.random() * arrayLength));
 		for(var i = 0; i< usedId.length; i++ )

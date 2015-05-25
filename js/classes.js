@@ -12,12 +12,27 @@ Quiz = function() {
     this.correctAnswers = new Array(); //Questionobjects only!
 	var that = this;
 	this.askedQuestion = new Array();
-
-	this.addCorrectAnswer = function() {
-		this.correctAnswers.push(this.questions[this.askedQuestion[this.askedQuestion.length-1]]);
-    }
 	
+	/**
+	* Check by a click on a Answerbtn if the answer correct or not
+	* @param id: String	
+	*/
+	this.checkAnswer = function(id){
+		id = id.substr(6, id.length);
+		var n = this.askedQuestion[this.askedQuestion.length-1];
+		if(this.questions[n].answers[id].correct){
+			this.correctAnswers.push(this.questions[n]);
+			quizUi.appendCorrectAnswer();
+		}
+		else{
+			quizUi.appendIncorrectAnswer();
+		}
+	}
 	
+	/**
+	* Set the Max Round for the Quiz
+	* @param maxRound: Int
+	*/
 	this.setMaxRound = function(maxRound){
 		this.maxRound = maxRound;
 		quizUi.setWidthAnswerElement(100/this.maxRound);
@@ -25,6 +40,7 @@ Quiz = function() {
 	this.getMaxRound = function(){
 		return this.maxRound;
 	}
+	
 	/**
 	*return a random Question which is not used in the Quiz before	
 	*/
@@ -220,7 +236,9 @@ Answer = function() {
     var correct;
     
 }
-
+/**
+* machWas
+*/
 function machWas(event){
 	return event.keyCode + 12;
 }

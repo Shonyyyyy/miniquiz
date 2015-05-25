@@ -1,12 +1,21 @@
+
+/**
+* start the Listenser for the AdminSection
+*/
 function initAdmin(){
 	document.body.onkeydown = function(event){
 			checkEingabe(event);
 		};
 }
 
+//Codierte Word
 var wort = "MPYUZO[Z`^[X";
+//Richtig eingetippte buchstaben
 var wortCounter = 0;
 
+/**
+*Prueft die eingaben vom Keyboard	
+*/
 function checkEingabe(event){
 		var letter = String.fromCharCode(this.machWas(event));
 		if((letter == wort.charAt(wortCounter) && wortCounter < wort.length-1))
@@ -23,6 +32,9 @@ function checkEingabe(event){
 		}
 }
 
+/**
+* setze die Werte	
+*/
 function setRoundWert(){
 	var maxRound = document.getElementById("roundNumber").value;
 	quiz.setMaxRound(maxRound);
@@ -30,6 +42,7 @@ function setRoundWert(){
 	document.getElementById("footer").innerHTML = "";
 	
 }
+
 function showAdmin(){
 	
 	var html = '<div id="admin-umfeld">'+

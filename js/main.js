@@ -1,4 +1,6 @@
-
+/**
+* Inizalisiert the quiz and quizUI	
+*/
 $(document).ready(function() {
     quizUi = new QuizUi();
     quiz = new Quiz();
