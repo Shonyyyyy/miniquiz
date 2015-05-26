@@ -7,9 +7,10 @@
  */
 Quiz = function() {
     this.questions; //Questionobjects only!
-    this.maxRound = 3;
+    this.maxRound = 5;
     this.currentRound = 0;
     this.correctAnswers = new Array(); //Questionobjects only!
+	this.incorrectAnswers = new Array(); //Questionobjects only!
 	var that = this;
 	this.askedQuestion = new Array();
 	
@@ -25,6 +26,8 @@ Quiz = function() {
 			quizUi.appendCorrectAnswer();
 		}
 		else{
+			this.questions[n].currentRound = this.currentRound;
+			this.incorrectAnswers.push(this.questions[n]);
 			quizUi.appendIncorrectAnswer();
 		}
 	}
@@ -227,6 +230,7 @@ Question = function() {
     var text;
     var id;
     var answers;
+	this.currentRound;
 }
 
 /**

@@ -26,6 +26,19 @@ QuizUi = function() {
 	this.setWidthAnswerElement = function(width){
 		this.widthAnswerElement = width;
 	}
+
+    this.toggleWrongAnswers = function(e) {
+        var chevron = $('#toggle-wrong-answers').children('.glyphicon');
+        if($(chevron).hasClass('glyphicon-chevron-right')) {
+            $(chevron).removeClass('glyphicon-chevron-right');
+            $(chevron).addClass('glyphicon-chevron-down');
+        } else {
+            $(chevron).removeClass('glyphicon-chevron-down');
+            $(chevron).addClass('glyphicon-chevron-right');
+        }
+        $('#wrong-answers-container').toggle();
+    }
+
     /**
      * Starts the Quiz and is called from #start-quiz button
      */
@@ -103,6 +116,23 @@ QuizUi = function() {
                     break;
                 default:
                     break;
+            }
+
+            if(mood>1) {
+                $('#toggle-wrong-answers').show();
+
+                for(var i = 0;i<quiz.incorrectAnswers.length;i++) {
+                    var question = quiz.incorrectAnswers[i];
+
+                    for(var j = 0;j<question.answers.length;j++) {
+                        if(question.answers[j].correct) {
+                            var correctAnswer = question.answers[j];
+                        }
+                    }
+
+                    $('#wrong-answers-container').append('<u><h4><b>Frage ' + question.currentRound + ': </b>' + question.text + ':</h4></u>');
+                    $('#wrong-answers-container').append('<b>Richtige Antwort: </b>' + correctAnswer.text);
+                }
             }
 
             $('#game').fadeOut(500, function() {

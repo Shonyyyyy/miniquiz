@@ -17,5 +17,27 @@
     <correct>richtige</correct>
     <answer>falsch</answer>
 </Question>
+<Question id="3">
+    <QuestionText>Meine Frage</QuestionText>
+
+    <answer>die Antwort</answer>
+    <correct>richtige</correct>
+    <answer>falsch</answer>
+</Question>
+<Question id="4">
+    <QuestionText>Meine Frage</QuestionText>
+
+    <answer>die Antwort</answer>
+    <correct>richtige</correct>
+    <answer>falsch</answer>
+</Question>
+<Question id="5">
+    <QuestionText>Meine Frage</QuestionText>
+
+    <answer>die Antwort</answer>
+    <correct>richtige</correct>
+    <answer>falsch</answer>
+</Question>
+
 
 </Quiz>
