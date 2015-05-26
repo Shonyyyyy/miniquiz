@@ -135,7 +135,7 @@ QuizUi = function() {
      * adds a red piece to the answer-bar
      * @param width: int
      */
-    this.appendIncorrectAnswer = function(width) {
+    this.appendIncorrectAnswer = function() {
         $('.progress').append('<div class="progress-bar progress-bar-danger" style="width: ' + this.widthAnswerElement + '%;"></div>');
     }
 

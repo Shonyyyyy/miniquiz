@@ -29,6 +29,10 @@ Quiz = function() {
 		}
 	}
 	
+	this.getMaxSizeRound = function(){
+		return this.questions.length;
+	}
+	
 	/**
 	* Set the Max Round for the Quiz
 	* @param maxRound: Int
@@ -137,6 +141,7 @@ Quiz = function() {
 	*/
 	this.parseXML = function(s){
 		//Replace the String for split the String after this
+		s = new XMLSerializer().serializeToString(s);
 		var xml = s.replace(/ /gi, "#+#");
 		xml = xml.replace(/\n/gi, "#+#");
 		xml = xml.replace(/</gi,"#+#");

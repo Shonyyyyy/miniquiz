@@ -32,6 +32,18 @@ function checkEingabe(event){
 		}
 }
 
+
+function checkEingabeRound(){
+	var maxRound = document.getElementById("roundNumber").value;
+	var maxSize = quiz.getMaxSizeRound();
+	if(maxRound > maxSize){
+		document.getElementById("roundNumber").value = maxSize;
+	}
+	else if(maxRound < 1){
+		document.getElementById("roundNumber").value = 1;
+	}
+	
+}
 /**
 * setze die Werte	
 */
@@ -47,7 +59,7 @@ function showAdmin(){
 	
 	var html = '<div id="admin-umfeld">'+
 		'<h1>Adminbereich</h1>'+
-		'<p>Anzahl von Fragen Pro Runde: <input type="number" value="'+quiz.getMaxRound()+'" id="roundNumber"></p>'+
+		'<p>Anzahl von Fragen Pro Runde: <input type="number" onchange="checkEingabeRound()" value="'+quiz.getMaxRound()+'" id="roundNumber"></p>'+
 		'<button id="adminSetButton" class="btn btn-primary" onclick="setRoundWert()">Speichern</button>'+
 	'</div>';
 	document.getElementById("footer").innerHTML = html;
