@@ -27,7 +27,7 @@ QuizUi = function() {
 		this.widthAnswerElement = width;
 	}
 
-    this.toggleWrongAnswers = function(e) {
+    this.toggleWrongAnswers = function() {
         var chevron = $('#toggle-wrong-answers').children('.glyphicon');
         if($(chevron).hasClass('glyphicon-chevron-right')) {
             $(chevron).removeClass('glyphicon-chevron-right');
@@ -67,9 +67,13 @@ QuizUi = function() {
         if(this.state == 3) {
             $('#result').fadeOut(500, function(){
                 $('#start').fadeIn(500);
+                $('#toggle-wrong-answers').hide();
+                that.toggleWrongAnswers();
+                $('#wrong-answers-container').empty();
             });
             this.state = 1;
             this.clearAnswerBar();
+
         } else {
             console.log("State is not correct for this action!");
         }
@@ -118,7 +122,7 @@ QuizUi = function() {
                     break;
             }
 
-            if(mood>1) {
+            if(quiz.incorrectAnswers.length>0) {
                 $('#toggle-wrong-answers').show();
 
                 for(var i = 0;i<quiz.incorrectAnswers.length;i++) {

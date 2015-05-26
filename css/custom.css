@@ -25,6 +25,7 @@ body {
     height:100%;
     margin-left:auto;
     margin-right:auto;
+    overflow: scroll;
 }
 
 .start-btn {

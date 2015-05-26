@@ -94,6 +94,7 @@ Quiz = function() {
 
 	this.resetQuiz = function() {
 		this.correctAnswers = new Array();
+		this.incorrectAnswers = new Array();
 		this.currentRound = 0;
 		this.askedQuestion = new Array();
 	}

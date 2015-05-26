@@ -13,5 +13,5 @@ $(document).on('click', '#start-quiz', function (e) {
 });
 
 $(document).on('click', '#toggle-wrong-answers', function(e) {
-   quizUi.toggleWrongAnswers(e);
+   quizUi.toggleWrongAnswers();
 });
